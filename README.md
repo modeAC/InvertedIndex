@@ -41,5 +41,5 @@ Start interface
 ## Usage/Examples
 
 Some usage example:
-[console_screen_shoot](imgs/usage_example.png)
+![console_screen_shoot](imgs/usage_example.png)
 
