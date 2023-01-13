@@ -39,7 +39,8 @@ Start interface
 
 
 ## Usage/Examples
-
-Some usage example:
+Start server:\
+![console_screen_shoot](imgs/start_server.png)\
+Some usage example:\
 ![console_screen_shoot](imgs/usage_example.png)
 
