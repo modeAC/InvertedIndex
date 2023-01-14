@@ -39,8 +39,8 @@ Start interface
 
 
 ## Usage/Examples
-Start server:\
-![console_screen_shoot](imgs/start_server.png)\
-Some usage example:\
-![console_screen_shoot](imgs/usage_example.png)
-
+Performance:\
+![performance_graph](imgs/perf_count.png)
+| th_no | 1     | 2    | 3    | 4    | 5    | 6    | 7    | 8    |
+|-------|-------|------|------|------|------|------|------|------|
+| time  | 10.58 | 7.74 | 6.57 | 6.27 | 6.20 | 6.02 | 6.12 | 6.18 |
