@@ -1,14 +1,13 @@
 import os
+import pickle
 import string
+import zlib
 from multiprocessing.pool import Pool
 from collections import defaultdict
 from typing import Optional
-from time import perf_counter
-
-import numpy as np
 
 
-def format_text(text):
+def format_text(text: str) -> str:
     return text.translate(str.maketrans('', '', string.punctuation)).replace('<br />', '\n').lower()
 
 
@@ -17,7 +16,7 @@ class Index:
     def __init__(self):
         self.__storage = defaultdict(list)
 
-    def add(self, session_path: str, th_no: int = 1, var: Optional[int] = None):
+    def add(self, session_path: str, th_no: int = 1, var: Optional[int] = None) -> int:
         """
         Add files to index
         :param session_path: parental directory of target files
@@ -46,7 +45,7 @@ class Index:
         else:
             raise FileNotFoundError(f'{session_path} does not exists')
 
-    def search(self, word: str):
+    def search(self, word: str) -> list:
         """
         Search inside index
         :param word: word to search
@@ -64,7 +63,6 @@ class Index:
 
     @staticmethod
     def _process_thread(files):
-        s = perf_counter()
         ret = []
         for file in files:
             with open(file, 'r', encoding="utf8") as f:
@@ -72,7 +70,7 @@ class Index:
             words = format_text(data).split()
             ret.extend([(word, file, i) for i, word in enumerate(words)])
 
-        return ret, perf_counter() - s
+        return zlib.compress(pickle.dumps(ret))
 
     def __get_file_names(self, session_path, var):
         f = []
@@ -117,6 +115,5 @@ class Index:
 
     def __finalize(self, res):
         for _data in res:
-            for data in _data[0]:
+            for data in pickle.loads(zlib.decompress(_data)):
                 self.__storage[data[0]].append((data[1], data[2]))
-
