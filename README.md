@@ -3,6 +3,11 @@
 
 Python implementation of inverted index struncture using process-based parallelism methods.
 
+  * [Requirements](#requirements)
+  * [Run Locally](#run-locally)
+  * [Running Tests](#running-tests)
+  * [Performance](#performance)
+
 
 ## Requirements
 * [Python](https://www.python.org/) 3.8 or higher
@@ -38,8 +43,17 @@ Start interface
 ```
 
 
-## Usage/Examples
-Performance:\
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  python index_test.py
+```
+
+
+## Performance
 ![performance_graph](imgs/perf_count.png)
 | th_no | 1     | 2    | 3    | 4    | 5    | 6    | 7    | 8    |
 |-------|-------|------|------|------|------|------|------|------|
