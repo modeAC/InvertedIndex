@@ -58,13 +58,13 @@ class IndexUI:
         print(f'Added {result["files"] if "files" in result else ""} new files')
 
     def __search(self, cmd: list, max_wait: float = 3):
-        words = cmd[1:]
+        word = cmd[1]
 
         url = self.get_url('search')
         start = time.perf_counter()
         while True:
             try:
-                request = {'words': words}
+                request = {'words': [word]}
                 response = requests.get(url, data=jsonpickle.encode(request))
             except requests.exceptions.RequestException as e:
                 if not max_wait or time.perf_counter() - start < max_wait:
