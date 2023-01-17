@@ -7,6 +7,9 @@ from index import Index
 
 app = Flask(__name__)
 
+thread_no = 5
+index = Index()
+
 
 @app.route('/api/add_files', methods=['POST'])
 def add_files():
@@ -63,9 +66,5 @@ def clear():
     return Response(response=response_pickled, status=status, mimetype="application/json")
 
 
-if __name__ == '__main__':
-    thread_no = 5
-    port = 5000
-    index = Index()
-
-    app.run(host="0.0.0.0", port=port)
+port = 5000
+app.run(host="0.0.0.0", port=port)
