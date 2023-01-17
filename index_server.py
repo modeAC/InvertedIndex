@@ -31,25 +31,9 @@ def add_files():
 def search():
     r = request
     data = jsonpickle.decode(r.data)
-    words = data['words']
+    word = data['words'][0]
 
-    _aux = {}
-    ret = {}
-
-    for w in words:
-        for s_res in index.search(w):
-            if not w in _aux:
-                _aux[w] = set()
-            _aux[w].add(s_res[0])
-            if not s_res[0] in ret:
-                ret[s_res[0]] = list()
-            ret[s_res[0]].append(s_res[1])
-
-    _aux = set.intersection(*list(_aux.values()))
-
-    for k, v in copy.copy(ret).items():
-        if k not in _aux:
-            ret.pop(k)
+    ret = index.search(word)
 
     response = {'results': ret}
     status = 200
