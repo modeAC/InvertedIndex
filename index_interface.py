@@ -22,7 +22,7 @@ class IndexUI:
                 self.__reset(cmd)
             elif cmd[0] == 'search':
                 res = self.__search(cmd)
-                for f, d in res.items():
+                for f, d in res:
                     print(f, d)
             elif cmd[0] == 'exit':
                 break
