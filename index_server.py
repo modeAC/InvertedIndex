@@ -1,4 +1,4 @@
-import copy
+import threading
 
 import jsonpickle
 from flask import Flask, request, Response
@@ -6,6 +6,7 @@ from flask import Flask, request, Response
 from index import Index
 
 app = Flask(__name__)
+sem = threading.Semaphore()
 
 thread_no = 5
 index = Index()
@@ -18,7 +19,9 @@ def add_files():
     path = data['path']
     var = data['var'] if data['var'] != '/' else None
 
+    sem.acquire()
     ret = index.add(path, th_no=thread_no, var=var)
+    sem.release()
 
     response = {'files': ret}
     status = 200
